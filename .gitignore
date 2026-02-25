@@ -1,0 +1,5 @@
+# Ignorar o arquivo do banco de dados local
+backend/sgp_dados.db
+# Ignorar pastas de ambiente virtual e cache do python
+__pycache__/
+.env

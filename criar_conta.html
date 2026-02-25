@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar conta SGP</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="criar_conta.css">
+</head>
+<body>
+    <div class="tela">
+
+        <!-- cabecalho -->   
+        <div id="container-cabecalho">
+            <img id="img-principal" src="img/Fingerprint.png" alt="logo SGP">
+            <h1>CRIAR CONTA</h1>
+            <p>Sistema de Gerenciamento de Presenças</p>
+        </div>
+
+        <div id="container-pescoco">
+            <p>Já tem uma conta? 
+                <a href="index.html">Entrar</a>
+            </p>
+        </div>
+
+        <!-- Inputs -->
+        <form class="container-principal">
+            
+            <div class="container-secundario">
+                <div class="label">
+                    <label for="nome">Nome completo</label>
+                </div>
+                <input class="input" type="text" id="nome" name="nome" required> 
+            </div>
+
+            <div class="container-secundario">
+                <div class="label">
+                    <label for="email">E-mail</label>
+                </div>
+                <input class="input" type="email" id="email" name="email" required> 
+            </div>
+
+            <div class="container-secundario">
+                <label for="senha">Senha</label>
+                <div class="input-com-icone">
+                    <input class="input" type="password" name="senha" id="senha" required>
+                    <img src="img/Eye.png" alt="Mostrar senha" class="icone-olho" id="botao-olho-1">
+                </div>
+            </div>
+
+            <div class="container-secundario">
+                <label for="confirmar-senha">Confirmar senha</label>
+                <div class="input-com-icone">
+                    <input class="input" type="password" name="confirmar-senha" id="confirmar-senha" required>
+                    <img src="img/Eye.png" alt="Mostrar senha" class="icone-olho" id="botao-olho-2">
+                </div>
+            </div>
+
+            <button type="submit" class="botao-verde">Criar conta</button>
+            
+        </form>
+
+        <!-- rodapé -->
+
+        <div class="container-rodape">
+            <div class="marca">
+                <img id="img-secundaria" src="img/Fingerprint.png" alt="SGP">
+                <p>S.G.P.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

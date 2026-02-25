@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGP</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="tela">
+
+        <!-- saudação ao sistema -->   
+        <div id="container-cabecalho">
+            <img id="img-principal" src="img/Fingerprint.png" alt="logo SGP">
+            <h1>LOGIN</h1>
+            <p>Sistema de Gerenciamento de Presenças</p>
+        </div>
+
+        <!-- Inputs -->
+        <form class="container-principal">
+            <div class="container-secundario">
+                <div class="label">
+                    <label for="">E-mail</label>
+                </div>
+                <input class="input" type="email" id="email" name="email" required> 
+            </div>
+
+            <div class="container-secundario">
+                <div class="label-senha">
+                    <label for="senha">Senha</label>
+                    <a href="#">Esqueceu a senha?</a>
+                </div>
+    
+                <div class="input-com-icone">
+                    <input class="input" type="password" name="senha" id="senha" required>
+                    <img src="img/Eye.png" alt="Mostrar senha" class="icone-olho" id="botao-olho">
+                </div>
+            </div>
+
+            <button type="submit" class="botao-verde">Fazer login</button>
+            
+        </form>
+
+        <!-- rodapé -->
+
+        <div class="container-rodape">
+            <button type="submit" class="botao-borda-verde">Criar conta nova</button>
+
+            <div class="marca">
+                <img id="img-secundaria" src="img/Fingerprint.png" alt="SGP">
+                <p>S.G.P.</p>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>

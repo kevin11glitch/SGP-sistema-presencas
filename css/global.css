@@ -1,0 +1,53 @@
+:root {
+  --verde-principal: #008000;
+  --cinza-fundo: #F5F5F5;
+  --cinza-borda: #CCCCCC;
+  --fonte-padrao: 'Poppins', sans-serif; 
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--fonte-padrao);
+  background-color: #FFFFFF;
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.tela {
+    padding: 30px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.container-rodape {
+    margin-top:auto;
+}
+
+.marca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    font-weight: bold;
+    color: #353535;
+}
+
+.marca p {
+    font-size: 18px;
+}

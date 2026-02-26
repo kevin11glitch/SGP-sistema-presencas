@@ -31,7 +31,7 @@ def registrar_usuario(usuario: NovoUsuario):
         senha_criptografada = pwd_context.hash(senha_limpa)
         
         cursor.execute(
-            '''INSERT INTO usuarios (nome_completo, email, senha, role) 
+            '''INSERT INTO usuarios (nome_completo, email, senha, cargo) 
                VALUES (?, ?, ?, ?)''',
             (usuario.nome_completo, usuario.email, senha_criptografada, 'comum')
         )

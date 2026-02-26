@@ -4,28 +4,27 @@ def inicializar_banco():
     conexao = sqlite3.connect('sgp_dados.db')
     cursor = conexao.cursor()
 
-    print("Criando tabela: usuarios...")
-    cursor.execute('''
+    cursor.executescript('''
     CREATE TABLE IF NOT EXISTS usuarios (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nome_completo TEXT NOT NULL,
         email TEXT UNIQUE NOT NULL,
         senha TEXT NOT NULL,
-        role TEXT NOT NULL
-    )
-    ''')
+        cargo TEXT NOT NULL
+    );
 
-    print("Criando tabela: turmas...")
-    cursor.execute('''
+    CREATE TABLE IF NOT EXISTS escolas (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        nome_escola TEXT NOT NULL
+    );
+
     CREATE TABLE IF NOT EXISTS turmas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nome_disciplina TEXT NOT NULL,
-        ano_turma TEXT NOT NULL
-    )
-    ''')
+        ano TEXT NOT NULL,
+        escola_id INTEGER NOT NULL,
+        FOREIGN KEY(escola_id) REFERENCES escolas(id)
+    );
 
-    print("Criando tabela: presencas...")
-    cursor.execute('''
     CREATE TABLE IF NOT EXISTS presencas (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         usuario_id INTEGER NOT NULL,
@@ -34,9 +33,9 @@ def inicializar_banco():
         data_registro DATETIME NOT NULL,
         FOREIGN KEY(usuario_id) REFERENCES usuarios(id),
         FOREIGN KEY(turma_id) REFERENCES turmas(id)
-    )
+    );
     ''')
-
+    
     conexao.commit()
     conexao.close()
     print("Banco de dados criado com sucesso! As tabelas estão prontas.")

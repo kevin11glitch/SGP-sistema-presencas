@@ -21,14 +21,17 @@ class NovoUsuario(BaseModel):
     email: str
     senha: str
 
+class UsuarioLogin(BaseModel):
+    email: str
+    senha: str
+
 @app.post("/api/usuarios/registrar")
 def registrar_usuario(usuario: NovoUsuario):
     try:
         conexao = sqlite3.connect('sgp_dados.db')
         cursor = conexao.cursor()
         
-        senha_limpa = usuario.senha.strip()[:72]
-        senha_criptografada = pwd_context.hash(senha_limpa)
+        senha_criptografada = pwd_context.hash(usuario.senha)
         
         cursor.execute(
             '''INSERT INTO usuarios (nome_completo, email, senha, cargo) 
@@ -36,32 +39,33 @@ def registrar_usuario(usuario: NovoUsuario):
             (usuario.nome_completo, usuario.email, senha_criptografada, 'comum')
         )
         
+        usuario_id = cursor.lastrowid
+        
         conexao.commit()
-        return {"mensagem": "Conta criada com segurança!"}
+        return {
+            "mensagem": "Conta criada com segurança!",
+            "nome_completo": usuario.nome_completo,
+        }
     except sqlite3.IntegrityError:
         raise HTTPException(status_code=400, detail="E-mail já cadastrado.")
     finally:
         conexao.close()
 
-# --- ROTA DE LOGIN ---
 @app.post("/api/usuarios/login")
 def login_usuario(usuario: UsuarioLogin):
     try:
         conexao = sqlite3.connect('sgp_dados.db')
         cursor = conexao.cursor()
         
-        cursor.execute("SELECT id, nome_completo, senha, role FROM usuarios WHERE email = ?", (usuario.email,))
+        cursor.execute("SELECT id, nome_completo, senha, cargo FROM usuarios WHERE email = ?", (usuario.email,))
         resultado = cursor.fetchone()
         
-        # Cortamos a senha aqui também para bater com o que foi registrado
-        senha_login_limpa = usuario.senha.strip()[:72]
-        
-        if resultado and pwd_context.verify(senha_login_limpa, resultado[2]):
+        if resultado and pwd_context.verify(usuario.senha, resultado[2]):
             return {
                 "mensagem": f"Bem-vindo(a), {resultado[1]}!",
                 "usuario_id": resultado[0],
                 "nome_completo": resultado[1],
-                "role": resultado[3]
+                "cargo": resultado[3]
             }
         else:
             raise HTTPException(status_code=401, detail="E-mail ou senha incorretos.")
